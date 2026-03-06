@@ -38,18 +38,38 @@ These scripts allow traffic interception between the router and the target devic
 
 ## Installation
 
+Change to root user:
+```
+sudo su
+```
+
 Clone the repository:
 
-```bash
-sudo su
+```
 git clone https://github.com/Kill0geR/DoorStrike.git
+```
+
+Change Directory:
+```
 cd DoorStrike
 ```
+
+Create venv
 ```
 python -m venv venv
+```
+
+Activate venv
+```
 source venv/bin/activate
+```
+
+Install requirements
+```
 pip install -r requirements.txt
 ```
+
+Install following tools
 ```
 sudo apt install netdiscover dsniff dnsutils -y
 ```
