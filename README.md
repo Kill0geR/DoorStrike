@@ -46,6 +46,8 @@ git clone https://github.com/Kill0geR/DoorStrike.git
 cd DoorStrike
 ```
 ```
+python -m venv venv
+source venv/bin/activate
 pip install -r requirements.txt
 ```
 ```
