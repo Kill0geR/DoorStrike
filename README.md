@@ -56,7 +56,7 @@ cd DoorStrike
 
 Create venv
 ```
-python -m venv venv
+python3 -m venv venv
 ```
 
 Activate venv
