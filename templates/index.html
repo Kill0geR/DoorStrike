@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shutdown Ring Kamera</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+<div class="container">
+    <h1>Shutdown Ring Kamera</h1>
+
+    <div class="buttons">
+        <button id="startBtn" class="btn start">
+            <i class="fas fa-play"></i> Start
+        </button>
+        <button id="stopBtn" class="btn stop">
+            <i class="fas fa-stop"></i> Stop
+        </button>
+    </div>
+
+    <p id="statusText">Status: Idle</p>
+</div>
+
+<script>
+function updateStatus() {
+    fetch("/status")
+        .then(r => r.json())
+        .then(d => {
+            const st = d.status;
+            document.getElementById("statusText").innerText = "Status: " + st.charAt(0).toUpperCase() + st.slice(1);
+        });
+}
+
+document.getElementById("startBtn").onclick = () => {
+    fetch("/start", { method: "POST" })
+        .then(r => r.json())
+        .then(() => updateStatus());
+};
+
+document.getElementById("stopBtn").onclick = () => {
+    fetch("/stop", { method: "POST" })
+        .then(r => r.json())
+        .then(() => updateStatus());
+};
+
+// Status beim Laden der Seite abfragen:
+updateStatus();
+</script>
+
+
+</body>
+</html>

@@ -1,0 +1,74 @@
+body {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    font-family: "Arial", sans-serif;
+    background: linear-gradient(135deg, #0f0f0f, #1f1f3f);
+    color: white;
+}
+
+.container {
+    text-align: center;
+    padding: 40px;
+    background: rgba(30, 30, 50, 0.95);
+    border-radius: 20px;
+    width: 90%;
+    max-width: 400px;
+    box-shadow: 0px 0px 25px rgba(0, 255, 150, 0.2);
+    backdrop-filter: blur(5px);
+}
+
+h1 {
+    margin-bottom: 30px;
+    font-size: 28px;
+    color: #00ffcc;
+    text-shadow: 1px 1px 5px #000;
+}
+
+.buttons {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-bottom: 25px;
+}
+
+.btn {
+    padding: 15px 30px;
+    font-size: 18px;
+    font-weight: bold;
+    border-radius: 12px;
+    border: none;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.btn i {
+    font-size: 20px;
+}
+
+.btn:hover {
+    transform: scale(1.1);
+    box-shadow: 0 0 15px rgba(0, 255, 150, 0.5);
+}
+
+.start {
+    background: linear-gradient(135deg, #28a745, #00ff99);
+    color: white;
+}
+
+.stop {
+    background: linear-gradient(135deg, #dc3545, #ff4d4d);
+    color: white;
+}
+
+#statusText {
+    font-size: 20px;
+    margin-top: 10px;
+    color: #00ffcc;
+}
