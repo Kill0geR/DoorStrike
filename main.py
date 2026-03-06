@@ -3,6 +3,9 @@ import subprocess
 import BetterPrinting as bp
 import json
 from pathlib import Path
+import os
+import sys
+
 
 CONFIG_FILE = "config.json"
 
@@ -71,6 +74,7 @@ sleep 2
 arpspoof -i {interface} -t {target} {spoof}
 """)
 
+
 def main():
 
     bp.color("\n🔎 Scanning network for Ring Doorbell...\n", "yellow")
@@ -120,5 +124,11 @@ Terminal 2:
 
 
 if __name__ == "__main__":
+    if sys.platform != "linux":
+        print("❌ This program can sadly only run in Linux")
+
+    if os.geteuid() != 0:
+        print("❌ This program must be run as root.")
+        sys.exit(1)
     create_config()
     main()
